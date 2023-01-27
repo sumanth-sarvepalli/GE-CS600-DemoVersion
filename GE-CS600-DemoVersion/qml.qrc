@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>View/BottomButton.qml</file>
+        <file>View/BottomInterface.qml</file>
+        <file>View/DisplayDialog.qml</file>
+        <file>View/DisplayImage.qml</file>
+        <file>View/DisplayPopup.qml</file>
+        <file>View/DisplayTime.qml</file>
+        <file>View/RightButton.qml</file>
+        <file>View/test.qml</file>
+        <file>Images/Alarm.PNG</file>
+    </qresource>
+</RCC>
