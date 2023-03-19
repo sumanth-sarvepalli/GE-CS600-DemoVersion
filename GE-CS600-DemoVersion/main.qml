@@ -3,6 +3,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.1
 import "View/"
 import DisplayModel 1.0
+import DisplayController 1.0
 
 Window {
     visible: true
@@ -39,14 +40,6 @@ Window {
         return (window1.height) * (value/window1.height);
     }
 
-
-    Button{
-        width: autoHorizontalSize(160)
-        height: autoVerticalSize(100)
-        padding: 4
-        onClicked: test()
-    }
-
     function buttonClick(button, check, vbutton){
         if (vbutton === undefined) vbutton = false
         if(check)
@@ -75,6 +68,58 @@ Window {
             myDialog.visible = false;
 
         return myDialog;
+    }
+
+    property bool bClicked: false
+    // Center Button
+    Button{
+        width: autoHorizontalSize(160)
+        height: autoVerticalSize(100)
+        padding: 4
+        anchors {
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.horizontalCenter
+        }
+
+        onClicked: {
+            if(bClicked)
+            {
+                newPopup.visible = false;
+                bClicked = false;
+            }
+            else
+            {
+                newPopup.visible = true;
+                bClicked = true;
+                DisplayController.confirmButtonPressed();
+            }
+        }
+    }
+
+    // Center Button Popup
+    Popup{
+        id: newPopup
+        width: 500
+        height: 700
+        x:50
+        y:50
+        closePolicy: Popup.CloseOnEscape
+        Repeater {
+             model: DisplayModel
+             delegate: Rectangle{
+                 color: "#bbc3db"
+                 Text{
+                     anchors {
+                         verticalCenter: parent.verticalCenter
+                         horizontalCenter: parent.horizontalCenter
+                         margins: 20
+                     }
+                     text: InstructionRole
+                     elide: Text.ElideRight
+                     font.pointSize: 12
+                 }
+             }
+        }
     }
 
     Column{
@@ -467,8 +512,5 @@ Window {
             elide: Text.ElideRight
         }
     }
-
-
-
 
 }
