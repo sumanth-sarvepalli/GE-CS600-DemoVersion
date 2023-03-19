@@ -2,6 +2,7 @@ import QtQuick 2.6
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.1
 import "View/"
+import DisplayModel 1.0
 
 Window {
     visible: true
@@ -30,12 +31,21 @@ Window {
         console.log('value of num: ',num1);
     }
 
-//    Button{
-//        width: 160
-//        height: 100
-//        padding: 4
-//        onClicked: test()
-//    }
+    function autoHorizontalSize(value){
+        return (window1.width) * (value/window1.width);
+    }
+
+    function autoVerticalSize(value) {
+        return (window1.height) * (value/window1.height);
+    }
+
+
+    Button{
+        width: autoHorizontalSize(160)
+        height: autoVerticalSize(100)
+        padding: 4
+        onClicked: test()
+    }
 
     function buttonClick(button, check, vbutton){
         if (vbutton === undefined) vbutton = false

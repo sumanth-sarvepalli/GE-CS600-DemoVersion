@@ -3,7 +3,7 @@ import QtQuick.Controls 2.1
 
 Image {
     id: image1
-    source: "images/Alarm.PNG"
+    source: "../Images/Alarm.PNG"
     fillMode: Image.PreserveAspectFit
     height: 100
     anchors{
